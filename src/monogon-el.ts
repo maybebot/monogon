@@ -2,6 +2,12 @@ import { transformModule } from './utils';
 import { json } from './modules/json';
 import type { SupportedModule } from './types';
 
+const baseCss = ` * { box-sizing: border-box; }
+  :host { display: inline-grid; white-space: pre-line; }
+  pre { width: 100%; height: 100%; padding: 1em; margin: 0; background-color: #1f1f1f; }
+  code { width: 100%; height: 100%; display: inline-block; outline: none; width: 100%; }
+`;
+
 class MonogonEl extends HTMLElement {
   static observedAttributes = ['content', 'lang'];
 
@@ -20,26 +26,29 @@ class MonogonEl extends HTMLElement {
     shadow.appendChild(preEl);
     preEl.appendChild(codeEl);
 
-    codeEl.textContent = this.getAttribute('content');
-
     /** Module */
     const moduleName = (this.getAttribute('lang') as SupportedModule) ?? 'json';
     const moduleMap = {
       json: json,
     };
-    const module = transformModule(moduleMap[moduleName], codeEl);
-    const moduleCss = module.map((m) => m.css).join(' ');
+    const module = moduleMap[moduleName];
+
+    const content = this.getAttribute('content') ?? '';
+
+    codeEl.textContent = module.format ? module.format(content) : content;
+
+    const definitions = transformModule(module.definitions, codeEl);
+    const moduleCss = definitions.map((m) => m.css).join(' ');
 
     /** Style */
     const styleEl = document.createElement('style');
-    const baseCss = `pre { margin: 0; background-color: #666; }`;
     styleEl.textContent = `${baseCss} ${moduleCss}`;
 
     shadow.appendChild(styleEl);
 
     /** Highlights */
     const applyHighlights = () => {
-      module.forEach((highlight) => {
+      definitions.forEach((highlight) => {
         highlight.apply();
       });
     };
