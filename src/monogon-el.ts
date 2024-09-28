@@ -5,7 +5,7 @@ import type { SupportedModule } from './types';
 const baseCss = ` * { box-sizing: border-box; }
   :host { display: inline-grid; white-space: pre-line; }
   pre { width: 100%; height: 100%; padding: 1em; margin: 0; background-color: #1f1f1f; }
-  code { width: 100%; height: 100%; display: inline-block; outline: none; width: 100%; }
+  code { width: 100%; height: 100%; display: inline-block; outline: none; width: 100%; white-space: pre-line; }
 `;
 
 class MonogonEl extends HTMLElement {
@@ -14,6 +14,8 @@ class MonogonEl extends HTMLElement {
   constructor() {
     super();
   }
+
+  value = '';
 
   connectedCallback() {
     /** Structure */
@@ -34,6 +36,7 @@ class MonogonEl extends HTMLElement {
     const module = moduleMap[moduleName];
 
     const content = this.getAttribute('content') ?? '';
+    this.value = content;
 
     codeEl.textContent = module.format ? module.format(content) : content;
 
@@ -55,6 +58,8 @@ class MonogonEl extends HTMLElement {
 
     /** Listeners */
     codeEl.addEventListener('input', () => {
+      codeEl.normalize();
+      this.value = codeEl.textContent ?? '';
       applyHighlights();
     });
     applyHighlights();
