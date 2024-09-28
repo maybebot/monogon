@@ -1,7 +1,16 @@
 {
   "name": "monogon",
-  "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "description": "Modern syntax highlighting for the web",
+  "author": "Ian Bobinac",
+  "keywords": [
+    "monogon",
+    "syntax",
+    "highlighting",
+    "code",
+    "snippet",
+    "block"
+  ],
   "type": "module",
   "scripts": {
     "dev": "vite",
