@@ -1,8 +1,9 @@
 {
   "name": "monogon",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Modern syntax highlighting for the web",
   "author": "Ian Bobinac",
+  "license": "MIT",
   "keywords": [
     "monogon",
     "syntax",
