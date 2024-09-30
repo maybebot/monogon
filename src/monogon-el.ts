@@ -67,3 +67,24 @@ class MonogonEl extends HTMLElement {
 }
 
 customElements.define('monogon-el', MonogonEl);
+
+// @ts-expect-error preact not existing
+declare module 'preact/jsx-runtime' {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace JSX {
+    interface IntrinsicElements {
+      'monogon-el': MonogonElProps;
+    }
+  }
+}
+
+export interface TargetValueEvent extends Event {
+  target: HTMLInputElement;
+  currentTarget: HTMLInputElement;
+}
+interface MonogonProps {
+  content: string;
+  onInput?: (e: TargetValueEvent) => void;
+}
+// @ts-expect-error JSX not existing
+export interface MonogonElProps extends Omit<JSX.HTMLAttributes, keyof MonogonProps>, MonogonProps {}
