@@ -9,7 +9,7 @@ Super lightweight syntax highlighting for modern browsers.
 Import it
 
 ```js
-import monogon
+import 'monogon';
 ```
 
 Use in your HTML
@@ -54,10 +54,12 @@ plugins: [
 ];
 ```
 
+### Preact
+
+```js
+<monogon-el content={jsonText} onInput={(e) => console.log(e.target.value)}></monogon-el>
+```
+
 ### With SSR
 
 Since SSR is not yet supported, you need to load it in the browser during page load.
-
-```
-
-```
