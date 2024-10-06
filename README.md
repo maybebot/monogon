@@ -15,7 +15,7 @@ import 'monogon';
 Use in your HTML
 
 ```html
-<monogon-el content='{ "names": ["ian", "camilo"], size: "1kb", status: null  }'>Click me</monogon-el>
+<monogon-el lang="json" content='{ "names": ["ian", "camilo"], size: "1kb", status: null  }'>Click me</monogon-el>
 
 <script>
   document.querySelector('monogon-el').addEventListener('input', (event) => {
@@ -23,6 +23,14 @@ Use in your HTML
   });
 </script>
 ```
+
+## Supported languages
+
+| Language  | property  | syntax | formating |
+| --------- | --------- | ------ | --------- |
+| JSON      | json      | ✅     | ✅        |
+| CSS       | css       | ❓     | ❌        |
+| plaintext | plaintext | -      | -         |
 
 ## Frameworks
 
