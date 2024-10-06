@@ -6,9 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="module" src="src/monogon-el"></script>
     <title>Monogon playground</title>
+    <style>
+      :root {
+        font-family: system-ui, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans';
+        background-color: #181818;
+        color: #f3f3f3
+      }
+      body {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+    </style>
   </head>
   <body>
-    <monogon-el content='{"name":"Ian","age":4}' lang="json"></monogon-el>
+    <h1>Monogon playground</h1>
+    <hr />
+    <section>
+      <h2>Plaintext</h2>
+      <monogon-el lang="plaintext" content="Nothing to see here"></monogon-el>
+    </section>
+    <section>
+      <h2>JSON</h2>
+      <monogon-el lang="json" content='{"name":"Ian","age":4}'></monogon-el>
+    </section>
+    <section>
+      <h2>CSS</h2>
+    <monogon-el
+      lang="css"
+      content="--pyro-button-spacing: var(--pyro-spacing); /* size of the button */
+--pyro-button-border: var(--pyro-border); /* border */
+--pyro-button-border-radius: var(--pyro-border-radius); /* border-radius */
+/* Colors */
+--pyro-button-surface-color: var(--pyro-surface-color); /* no variant */
+--pyro-button-primary-color: var(--pyro-primary-color); /* text on no variant */
+--pyro-button-primary-color: var(--pyro-color-on-primary); /* primary background */
+--pyro-color-on-primary: var(--pyro-color-on-primary); /* primary text color */
+/* State */
+--pyro-button-hover-color: var(--pyro-hover-color); /* background when hovered */
+--pyro-button-active-color: none; /* background when active */"
+    ></monogon-el>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
