@@ -53,8 +53,12 @@ export const transformModule = (highlights: Highlight[], codeNode: HTMLElement) 
   }));
 };
 
-export const monoLog = (message: string) => {
+export const monoLog = (message: string, error = false) => {
   if (import.meta.env.DEV) {
-    console.warn('%c [monogon]', 'color: #56b9c8', message);
+    if (!error) {
+      console.warn('%c [monogon]', 'color: #56b9c8', message);
+    } else {
+      console.error('%c [monogon]', 'color: #56b9c8', message);
+    }
   }
 };

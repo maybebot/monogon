@@ -29,7 +29,7 @@ class MonogonEl extends HTMLElement {
     preEl.appendChild(codeEl);
 
     /** Module */
-    const moduleName = (this.getAttribute('lang') as SupportedModule) ?? 'plaintext';
+    const moduleName = this.getAttribute('lang') ?? 'plaintext';
     const module = await getModule(moduleName);
     const content = this.getAttribute('content') ?? '';
     this.value = content;
@@ -80,6 +80,7 @@ export interface TargetValueEvent extends Event {
 }
 interface MonogonProps {
   content: string;
+  lang: SupportedModule;
   onInput?: (e: TargetValueEvent) => void;
 }
 // @ts-expect-error JSX not existing
