@@ -1,3 +1,5 @@
+import { monoLog } from '../utils';
+
 const definitions = [
   { name: 'any', regex: /.*/g, css: { color: '#ce916f' } },
   { name: 'number', regex: /-?\d+(\.\d+)?([eE][+-]?\d+)?/g, css: { color: '#b5cea8' } },
@@ -9,18 +11,16 @@ const definitions = [
   { name: 'key', regex: /"([^"\\]*(\\.[^"\\]*)*)"\s*:/g, css: { color: '#9ad9fb' } },
 ];
 
-const format = (json: string) => {
+const format = (content: string) => {
   try {
-    return JSON.stringify(JSON.parse(json), null, 2);
+    return JSON.stringify(JSON.parse(content), null, 2);
   } catch {
-    if (import.meta.env.DEV) {
-      console.warn('%c [monogon] ', 'color: #bada55', 'Invalid Json, unable to format, skipping');
-    }
-    return json;
+    monoLog('Invalid JSON, unable to format, skipping');
+    return content;
   }
 };
 
-export const json = {
+export default {
   definitions,
   format,
 };

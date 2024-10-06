@@ -1,6 +1,6 @@
 import { transformModule } from './utils';
-import { json } from './modules/json';
 import type { SupportedModule } from './types';
+import { getModule } from './modules';
 
 const baseCss = ` * { box-sizing: border-box; }
   :host { display: inline-grid; white-space: pre-line; }
@@ -17,7 +17,7 @@ class MonogonEl extends HTMLElement {
 
   value = '';
 
-  connectedCallback() {
+  async connectedCallback() {
     /** Structure */
     const shadow = this.attachShadow({ mode: 'open' });
 
@@ -29,12 +29,8 @@ class MonogonEl extends HTMLElement {
     preEl.appendChild(codeEl);
 
     /** Module */
-    const moduleName = (this.getAttribute('lang') as SupportedModule) ?? 'json';
-    const moduleMap = {
-      json: json,
-    };
-    const module = moduleMap[moduleName];
-
+    const moduleName = (this.getAttribute('lang') as SupportedModule) ?? 'plaintext';
+    const module = await getModule(moduleName);
     const content = this.getAttribute('content') ?? '';
     this.value = content;
 
