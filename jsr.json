@@ -1,0 +1,8 @@
+{
+  "name": "@maybebot/monogon",
+  "version": "0.1.1",
+  "description": "Modern syntax highlighting for the web",
+  "author": "Ian Bobinac",
+  "license": "MIT",
+  "exports": "./src/monogon-el.ts"
+}
