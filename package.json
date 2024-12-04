@@ -12,6 +12,10 @@
     "snippet",
     "block"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maybebot/monogon"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
