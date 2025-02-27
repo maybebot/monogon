@@ -1,8 +1,17 @@
 # Monogon
 
-Super lightweight syntax highlighting for modern browsers.
+Simple and super lightweight syntax highlighting for developers.
+
+Not recommended in production, due to low browser support.
 
 ![alt text](image.png)
+
+> [!IMPORTANT]
+> This is meant for **developer tooling** and supports _very few_ languages.
+> 
+> If you don't need editable code snippets, look at [Shiki](https://github.com/shikijs/shiki), it's amazing.
+> 
+> If you need editable snippets, [Codemirror](https://github.com/codemirror/dev/) might be worth a look.
 
 ## Usage
 
@@ -15,7 +24,7 @@ import 'monogon';
 Use in your HTML
 
 ```html
-<monogon-el lang="json" content='{ "names": ["ian", "camilo"], size: "1kb", status: null  }'>Click me</monogon-el>
+<monogon-el lang="json" content="{ "names": ["ian", "camilo"], size: "1kb", status: null  }">Click me</monogon-el>
 
 <script>
   document.querySelector('monogon-el').addEventListener('input', (event) => {
@@ -26,11 +35,11 @@ Use in your HTML
 
 ## Supported languages
 
-| Language  | property  | syntax | formating |
-| --------- | --------- | ------ | --------- |
-| JSON      | json      | ✅     | ✅        |
-| CSS       | css       | ❓     | ❌        |
-| plaintext | plaintext | -      | -         |
+| Language  | property  | syntax | formatting |
+| --------- | --------- | ------ | ---------- |
+| JSON      | json      | ✅     | ✅         |
+| CSS       | css       | ❓     | ❌         |
+| plaintext | plaintext | -      | -          |
 
 ## Frameworks
 
@@ -70,4 +79,5 @@ plugins: [
 
 ### With SSR
 
-Since SSR is not yet supported, you need to load it in the browser during page load.
+SSR is not yet supported, you need to load it in the browser during page load.
+
