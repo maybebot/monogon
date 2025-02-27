@@ -18,8 +18,19 @@ class MonogonEl extends HTMLElement {
   value = '';
 
   async connectedCallback() {
+    this.render();
+  }
+
+  async attributeChangedCallback(oldValue: string | null, newValue: string | null) {
+    if (oldValue !== newValue) {
+      await this.render();
+    }
+  }
+
+  async render() {
     /** Structure */
-    const shadow = this.attachShadow({ mode: 'open' });
+    const shadow = this.shadowRoot || this.attachShadow({ mode: 'open' });
+    shadow.innerHTML = '';
 
     const preEl = document.createElement('pre');
     const codeEl = document.createElement('code');
