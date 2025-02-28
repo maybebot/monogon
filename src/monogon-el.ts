@@ -1,10 +1,11 @@
 import { transformModule } from './utils';
 import type { SupportedModule } from './types';
 import { getModule } from './modules';
+import theme from './theme.css?raw';
 
 const baseCss = ` * { box-sizing: border-box; }
   :host { display: inline-grid; white-space: pre-line; }
-  pre { width: 100%; height: 100%; padding: 1em; margin: 0; background-color: #1f1f1f; }
+  pre { width: 100%; height: 100%; padding: 1em; margin: 0; background-color: var(--mng-background); color: var(--mng-text); }
   code { width: 100%; height: 100%; display: inline-block; outline: none; width: 100%; white-space: pre-line; }
 `;
 
@@ -17,20 +18,30 @@ class MonogonEl extends HTMLElement {
 
   value = '';
 
+  codeEl: HTMLElement | null = null;
+  styleEl: HTMLStyleElement | null = null;
+
+  applyHighlights = () => {};
+
   async connectedCallback() {
-    this.render();
+    this.prepare();
+    this.refresh();
   }
 
   async attributeChangedCallback(oldValue: string | null, newValue: string | null) {
     if (oldValue !== newValue) {
-      await this.render();
+      await this.refresh();
     }
   }
 
-  async render() {
-    /** Structure */
+  async prepare() {
     const shadow = this.shadowRoot || this.attachShadow({ mode: 'open' });
     shadow.innerHTML = '';
+
+    /** Style */
+    const themeStyleEl = document.createElement('style');
+    themeStyleEl.textContent = `${baseCss} ${theme}`;
+    shadow.appendChild(themeStyleEl);
 
     const preEl = document.createElement('pre');
     const codeEl = document.createElement('code');
@@ -39,37 +50,38 @@ class MonogonEl extends HTMLElement {
     shadow.appendChild(preEl);
     preEl.appendChild(codeEl);
 
+    /** Listeners */
+    codeEl.addEventListener('input', () => {
+      this.codeEl!.normalize();
+      this.value = this.codeEl!.textContent ?? '';
+      this.applyHighlights();
+    });
+
+    this.codeEl = codeEl;
+    this.styleEl = themeStyleEl;
+  }
+
+  async refresh() {
     /** Module */
     const moduleName = this.getAttribute('lang') ?? 'plaintext';
     const module = await getModule(moduleName);
     const content = this.getAttribute('content') ?? '';
     this.value = content;
 
-    codeEl.textContent = module.format ? module.format(content) : content;
+    this.codeEl!.textContent = module.format ? module.format(content) : content;
 
-    const definitions = transformModule(module.definitions, codeEl);
+    const definitions = transformModule(module.definitions, this.codeEl!);
     const moduleCss = definitions.map((m) => m.css).join(' ');
 
-    /** Style */
-    const styleEl = document.createElement('style');
-    styleEl.textContent = `${baseCss} ${moduleCss}`;
-
-    shadow.appendChild(styleEl);
-
     /** Highlights */
-    const applyHighlights = () => {
+    this.styleEl!.textContent += `${moduleCss}`;
+
+    this.applyHighlights = () => {
       definitions.forEach((highlight) => {
         highlight.apply();
       });
     };
-
-    /** Listeners */
-    codeEl.addEventListener('input', () => {
-      codeEl.normalize();
-      this.value = codeEl.textContent ?? '';
-      applyHighlights();
-    });
-    applyHighlights();
+    this.applyHighlights();
   }
 }
 
