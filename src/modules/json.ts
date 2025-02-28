@@ -1,14 +1,14 @@
 import { monoLog } from '../utils';
 
 const definitions = [
-  { name: 'any', regex: /.*/g, css: { color: '#ce916f' } },
-  { name: 'number', regex: /-?\d+(\.\d+)?([eE][+-]?\d+)?/g, css: { color: '#b5cea8' } },
-  { name: 'boolean', regex: /\b(true|false)\b/g, css: { color: '#569cd6' } },
-  { name: 'null', regex: /\bnull\b/g, css: { color: '#569cd6' } },
-  { name: 'object-brackets', regex: /[{}]/g, css: { color: '#ffd708' } },
-  { name: 'array-brackets', regex: /[[\]]/g, css: { color: '#da70b9' } },
-  { name: 'string', regex: /"(?:[^"\\]*(?:\\.[^"\\]*)*)"/g, css: { color: '#ce916f' } },
-  { name: 'key', regex: /"([^"\\]*(\\.[^"\\]*)*)"\s*:/g, css: { color: '#9ad9fb' } },
+  { name: 'any', regex: /.*/g, css: { color: 'var(--mng-text)' } },
+  { name: 'number', regex: /-?\d+(\.\d+)?([eE][+-]?\d+)?/g, css: { color: 'var(--mng-number)' } },
+  { name: 'boolean', regex: /\b(true|false)\b/g, css: { color: 'var(--mng-boolean)' } },
+  { name: 'null', regex: /\bnull\b/g, css: { color: 'var(--mng-null)' } },
+  { name: 'object-brackets', regex: /[{}]/g, css: { color: 'var(--mng-curly-brackets)' } },
+  { name: 'array-brackets', regex: /[[\]]/g, css: { color: 'var(--mng-square-brackets)' } },
+  { name: 'string', regex: /"(?:[^"\\]*(?:\\.[^"\\]*)*)"/g, css: { color: 'var(--mng-string)' } },
+  { name: 'key', regex: /"([^"\\]*(\\.[^"\\]*)*)"\s*:/g, css: { color: 'var(--mng-key)' } },
 ];
 
 const format = (content: string) => {

@@ -1,10 +1,11 @@
 import { transformModule } from './utils';
 import type { SupportedModule } from './types';
 import { getModule } from './modules';
+import theme from './theme.css?raw';
 
 const baseCss = ` * { box-sizing: border-box; }
   :host { display: inline-grid; white-space: pre-line; }
-  pre { width: 100%; height: 100%; padding: 1em; margin: 0; background-color: #1f1f1f; }
+  pre { width: 100%; height: 100%; padding: 1em; margin: 0; background-color: var(--mng-background); color: var(--mng-text); }
   code { width: 100%; height: 100%; display: inline-block; outline: none; width: 100%; white-space: pre-line; }
 `;
 
@@ -32,6 +33,11 @@ class MonogonEl extends HTMLElement {
     const shadow = this.shadowRoot || this.attachShadow({ mode: 'open' });
     shadow.innerHTML = '';
 
+    /** Style */
+    const themeStyleEl = document.createElement('style');
+    themeStyleEl.textContent = `${baseCss} ${theme}`;
+    shadow.appendChild(themeStyleEl);
+
     const preEl = document.createElement('pre');
     const codeEl = document.createElement('code');
     codeEl.setAttribute('contenteditable', 'plaintext-only');
@@ -50,13 +56,9 @@ class MonogonEl extends HTMLElement {
     const definitions = transformModule(module.definitions, codeEl);
     const moduleCss = definitions.map((m) => m.css).join(' ');
 
-    /** Style */
-    const styleEl = document.createElement('style');
-    styleEl.textContent = `${baseCss} ${moduleCss}`;
-
-    shadow.appendChild(styleEl);
-
     /** Highlights */
+    themeStyleEl.textContent += `${moduleCss}`;
+
     const applyHighlights = () => {
       definitions.forEach((highlight) => {
         highlight.apply();
