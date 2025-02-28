@@ -18,18 +18,23 @@ class MonogonEl extends HTMLElement {
 
   value = '';
 
+  codeEl: HTMLElement | null = null;
+  styleEl: HTMLStyleElement | null = null;
+
+  applyHighlights = () => {};
+
   async connectedCallback() {
-    this.render();
+    this.prepare();
+    this.refresh();
   }
 
   async attributeChangedCallback(oldValue: string | null, newValue: string | null) {
     if (oldValue !== newValue) {
-      await this.render();
+      await this.refresh();
     }
   }
 
-  async render() {
-    /** Structure */
+  async prepare() {
     const shadow = this.shadowRoot || this.attachShadow({ mode: 'open' });
     shadow.innerHTML = '';
 
@@ -45,33 +50,38 @@ class MonogonEl extends HTMLElement {
     shadow.appendChild(preEl);
     preEl.appendChild(codeEl);
 
+    /** Listeners */
+    codeEl.addEventListener('input', () => {
+      this.codeEl!.normalize();
+      this.value = this.codeEl!.textContent ?? '';
+      this.applyHighlights();
+    });
+
+    this.codeEl = codeEl;
+    this.styleEl = themeStyleEl;
+  }
+
+  async refresh() {
     /** Module */
     const moduleName = this.getAttribute('lang') ?? 'plaintext';
     const module = await getModule(moduleName);
     const content = this.getAttribute('content') ?? '';
     this.value = content;
 
-    codeEl.textContent = module.format ? module.format(content) : content;
+    this.codeEl!.textContent = module.format ? module.format(content) : content;
 
-    const definitions = transformModule(module.definitions, codeEl);
+    const definitions = transformModule(module.definitions, this.codeEl!);
     const moduleCss = definitions.map((m) => m.css).join(' ');
 
     /** Highlights */
-    themeStyleEl.textContent += `${moduleCss}`;
+    this.styleEl!.textContent += `${moduleCss}`;
 
-    const applyHighlights = () => {
+    this.applyHighlights = () => {
       definitions.forEach((highlight) => {
         highlight.apply();
       });
     };
-
-    /** Listeners */
-    codeEl.addEventListener('input', () => {
-      codeEl.normalize();
-      this.value = codeEl.textContent ?? '';
-      applyHighlights();
-    });
-    applyHighlights();
+    this.applyHighlights();
   }
 }
 
