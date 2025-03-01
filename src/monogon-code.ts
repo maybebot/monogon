@@ -90,6 +90,27 @@ declare module 'preact/jsx-runtime' {
   }
 }
 
+// @ts-expect-error Svelte not present
+import { HTMLAttributes } from 'svelte/elements';
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+interface MonogonCodeSvelte extends Omit<HTMLAttributes<any>, keyof MonogonCodeProps>, MonogonCodeProps {}
+// @ts-expect-error Svelte not present
+declare module 'svelte/elements' {
+  export interface SvelteHTMLElements {
+    'monogon-code': MonogonCodeSvelte;
+  }
+}
+
+// @ts-expect-error Solid not present
+declare module 'solid-js' {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace JSX {
+    interface IntrinsicElements {
+      'monogon-code': MonogonCodeProps;
+    }
+  }
+}
+
 export interface TargetValueEvent extends Event {
   target: HTMLInputElement;
   currentTarget: HTMLInputElement;
