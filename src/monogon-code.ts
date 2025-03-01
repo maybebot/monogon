@@ -9,7 +9,7 @@ const baseCss = ` * { box-sizing: border-box; }
   code { width: 100%; height: 100%; display: inline-block; outline: none; width: 100%; white-space: pre-line; }
 `;
 
-class MonogonEl extends HTMLElement {
+class MonogonCode extends HTMLElement {
   static observedAttributes = ['content', 'lang'];
 
   constructor() {
@@ -85,14 +85,14 @@ class MonogonEl extends HTMLElement {
   }
 }
 
-customElements.define('monogon-el', MonogonEl);
+customElements.define('monogon-code', MonogonCode);
 
 // @ts-expect-error preact not existing
 declare module 'preact/jsx-runtime' {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace JSX {
     interface IntrinsicElements {
-      'monogon-el': MonogonElProps;
+      'monogon-code': MonogonCodeProps;
     }
   }
 }
@@ -107,4 +107,4 @@ interface MonogonProps {
   onInput?: (e: TargetValueEvent) => void;
 }
 // @ts-expect-error JSX not existing
-export interface MonogonElProps extends Omit<JSX.HTMLAttributes, keyof MonogonProps>, MonogonProps {}
+export interface MonogonCodeProps extends Omit<JSX.HTMLAttributes, keyof MonogonProps>, MonogonProps {}

@@ -35,6 +35,6 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/monogon-el.js",
-  "module": "./dist/monogon-el.js"
+  "main": "./dist/monogon-code.js",
+  "module": "./dist/monogon-code.js"
 }

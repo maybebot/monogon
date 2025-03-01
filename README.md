@@ -8,9 +8,9 @@ Not recommended in production, due to low browser support.
 
 > [!IMPORTANT]
 > This is meant for **developer tooling** and supports _very few_ languages.
-> 
+>
 > If you don't need editable code snippets, look at [Shiki](https://github.com/shikijs/shiki), it's amazing.
-> 
+>
 > If you need editable snippets, [Codemirror](https://github.com/codemirror/dev/) might be worth a look.
 
 ## Usage
@@ -24,10 +24,10 @@ import 'monogon';
 Use in your HTML
 
 ```html
-<monogon-el lang="json" content="{ "names": ["ian", "camilo"], size: "1kb", status: null  }">Click me</monogon-el>
+<monogon-code lang="json" content="{ "names": ["ian", "camilo"], size: "1kb", status: null  }">Click me</monogon-code>
 
 <script>
-  document.querySelector('monogon-el').addEventListener('input', (event) => {
+  document.querySelector('monogon-code').addEventListener('input', (event) => {
     console.log(event.target.value);
   });
 </script>
@@ -47,7 +47,7 @@ Use in your HTML
 
 ```js
 // in <template>
-<monogon-el :content="content" @input="handleInput">Click me</monogon-el>
+<monogon-code :content="content" @input="handleInput">Click me</monogon-code>
 
 // in <script>
 const content = ref('{ "json": ["this", "is", "json"], "how": 42  }')
@@ -74,10 +74,9 @@ plugins: [
 ### Preact
 
 ```js
-<monogon-el content={jsonText} onInput={(e) => console.log(e.target.value)}></monogon-el>
+<monogon-code content={jsonText} onInput={(e) => console.log(e.target.value)}></monogon-code>
 ```
 
 ### With SSR
 
 SSR is not yet supported, you need to load it in the browser during page load.
-

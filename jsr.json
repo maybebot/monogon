@@ -4,5 +4,5 @@
   "description": "Modern syntax highlighting for the web",
   "author": "Ian Bobinac",
   "license": "MIT",
-  "exports": "./src/monogon-el.ts"
+  "exports": "./src/monogon-code.ts"
 }
