@@ -49,6 +49,9 @@
     },
     "./preact": {
       "import": "./dist/frameworks/preact/MonogonCode.jsx"
+    },
+    "./solid": {
+      "import": "./dist/frameworks/solid/MonogonCode.jsx"
     }
   }
 }
