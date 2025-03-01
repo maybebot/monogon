@@ -78,8 +78,7 @@ class MonogonCode extends HTMLElement {
     this.applyHighlights();
   }
 }
-
-customElements.define('monogon-code', MonogonCode);
+if (!customElements.get('monogon-code')) customElements.define('monogon-code', MonogonCode);
 
 // @ts-expect-error preact not existing
 declare module 'preact/jsx-runtime' {

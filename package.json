@@ -43,6 +43,12 @@
     },
     "./vue": {
       "import": "./dist/frameworks/vue/MonogonCode.js"
+    },
+    "./react": {
+      "import": "./dist/frameworks/preact/MonogonCode.jsx"
+    },
+    "./preact": {
+      "import": "./dist/frameworks/preact/MonogonCode.jsx"
     }
   }
 }
