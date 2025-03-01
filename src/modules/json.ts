@@ -1,4 +1,4 @@
-import { monoLog } from '../utils';
+import { monoLog } from '../utils.js';
 
 const definitions = [
   { name: 'any', regex: /.*/g, css: { color: 'var(--mng-text)' } },

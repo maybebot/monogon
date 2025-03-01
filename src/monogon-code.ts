@@ -1,13 +1,7 @@
-import { transformModule } from './utils';
-import type { SupportedModule } from './types';
-import { getModule } from './modules';
-import theme from './theme.css?raw';
-
-const baseCss = ` * { box-sizing: border-box; }
-  :host { display: inline-grid; white-space: pre-line; }
-  pre { width: 100%; height: 100%; padding: 1em; margin: 0; background-color: var(--mng-background); color: var(--mng-text); }
-  code { width: 100%; height: 100%; display: inline-block; outline: none; width: 100%; white-space: pre-line; }
-`;
+import { transformModule } from './utils.js';
+import type { SupportedModule } from './types.ts';
+import { getModule } from './modules.js';
+import { css } from './theme.js';
 
 class MonogonCode extends HTMLElement {
   static observedAttributes = ['content', 'lang'];
@@ -40,7 +34,7 @@ class MonogonCode extends HTMLElement {
 
     /** Style */
     const themeStyleEl = document.createElement('style');
-    themeStyleEl.textContent = `${baseCss} ${theme}`;
+    themeStyleEl.textContent = css;
     shadow.appendChild(themeStyleEl);
 
     const preEl = document.createElement('pre');

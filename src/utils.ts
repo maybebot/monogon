@@ -1,4 +1,4 @@
-import type { Highlight } from './types';
+import type { Highlight } from './types.ts';
 /**
  * Calculates ranges to highlight based on regex
  *

@@ -1,3 +1,28 @@
+export const css = `
+* {
+  box-sizing: border-box;
+}
+:host {
+  display: inline-grid;
+  white-space: pre-line;
+}
+pre {
+  width: 100%;
+  height: 100%;
+  padding: 1em;
+  margin: 0;
+  background-color: var(--mng-background);
+  color: var(--mng-text);
+}
+code {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  outline: none;
+  width: 100%;
+  white-space: pre-line;
+}
+
 :host {
   /* Generic */
   --mng-text: #213547;
@@ -32,4 +57,4 @@
     --mng-keyword: #dcdcaa;
     --mng-dashes: #ddd;
   }
-}
+}`;

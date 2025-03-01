@@ -19,7 +19,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc",
     "preview": "vite preview"
   },
   "devDependencies": {
@@ -36,5 +36,13 @@
     "dist"
   ],
   "main": "./dist/monogon-code.js",
-  "module": "./dist/monogon-code.js"
+  "module": "./dist/monogon-code.js",
+  "exports": {
+    ".": {
+      "import": "./dist/monogon-code.js"
+    },
+    "./vue": {
+      "import": "./dist/frameworks/vue/MonogonCode.js"
+    }
+  }
 }
