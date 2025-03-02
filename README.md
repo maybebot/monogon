@@ -142,3 +142,6 @@ Full list of css properties used:
 ## With SSR
 
 SSR is not yet supported, you need to load it in the browser during page load.
+
+---
+Made with 🍕 in Amsterdam.
