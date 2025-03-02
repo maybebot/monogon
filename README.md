@@ -1,37 +1,21 @@
 # Monogon
 
-Simple and super lightweight syntax highlighting for developers.
+2kb `<code>` block with syntax highlighting meant for the dev environment.
 
-Not recommended in production, due to low browser support.
+Zero dependencies, support for [most frameworks](#frameworks), mildly [themable](#theming).
+
+Using the CSS Highlight, meaning [low browser support](https://caniuse.com/mdn-api_highlight).
 
 ![alt text](image.png)
 
 > [!IMPORTANT]
-> This is meant for **developer tooling** and supports _very few_ languages.
+> Monogon is meant for **developer tooling** and supports _very few_ languages. Think config files.
 >
 > If you don't need editable code snippets, look at [Shiki](https://github.com/shikijs/shiki), it's amazing.
 >
 > If you need editable snippets, [Codemirror](https://github.com/codemirror/dev/) might be worth a look.
-
-## Usage
-
-Import it
-
-```js
-import 'monogon';
-```
-
-Use in your HTML
-
-```html
-<monogon-code lang="json" content='{ "names": ["ian", "camilo"], size: "1kb", status: null  }'>Click me</monogon-code>
-
-<script>
-  document.querySelector('monogon-code').addEventListener('input', (event) => {
-    console.log(event.target.value);
-  });
-</script>
-```
+>
+> No SSR support for now.
 
 ## Supported languages
 
@@ -41,46 +25,85 @@ Use in your HTML
 | CSS       | css       | ❓     | ❌         |
 | plaintext | plaintext | -      | -          |
 
+## Usage
+
+Import it
+
+```js
+import 'monogon';
+```
+
+Use in your HTML as a web component.
+
+```html
+<monogon-code lang="json" content='{ "names": ["ian", "ana"], size: "2kb", status: null  }'>Click me</monogon-code>
+
+<script>
+  document.querySelector('monogon-code').addEventListener('input', (event) => {
+    console.log(event.target.value);
+  });
+</script>
+```
+
 ## Frameworks
 
 ### Vue
 
 ```js
-// in <template>
-<monogon-code :content="content" @input="handleInput">Click me</monogon-code>
+import MonogonCode from 'monogon/vue';
 
-// in <script>
 const content = ref('{ "json": ["this", "is", "json"], "how": 42  }')
-const handleInput = (e) => {
-    content.value = e.target.value
-}
+const handleInput = (e) => { content.value = e.target.value }
+
+<MonogonCode :content="content" @input="handleInput">Click me</MonogonCode>
 ```
 
-Vue assumes all [non-native HTML elements are Vue components](https://vuejs.org/guide/extras/web-components#using-custom-elements-in-vue). To resolve this specify in your build config:
+### React
 
-```js
-plugins: [
-  vue({
-    template: {
-      compilerOptions: {
-        // treat all tags with a dash as custom elements
-        isCustomElement: (tag) => tag.includes('-'),
-      },
-    },
-  }),
-];
+```jsx
+import MonogonCode from 'monogon/react';
+
+const content = '{ "json": ["this", "is", "json"], "how": 42  }';
+const handleInput = (e) => { console.log(e.target.value) }
+
+<MonogonCode content={content} lang="json" onInput={handleInput} />
 ```
 
 ### Preact
 
 ```jsx
-<monogon-code content={jsonText} onInput={(e) => console.log(e.target.value)}></monogon-code>
+import MonogonCode from 'monogon/preact';
+
+const content = '{ "json": ["this", "is", "json"], "how": 42  }';
+const handleInput = (e) => { console.log(e.target.value) }
+
+<MonogonCode content={content} lang="json" onInput={handleInput} />
+```
+
+### Svelte
+
+There is no native support yet for Svelte, so the web component needs to be used.
+
+```jsx
+import 'monogon';
+
+<monogon-code {content} lang="json" oninput={handleInput}></monogon-code>
+```
+
+### Solid
+
+```jsx
+import MonogonCode from 'monogon/solid';
+const handleInput = (e) => { console.log(e.target.value) }
+
+<MonogonCode content={content} lang="json" onInput={handleInput} />
 ```
 
 ## Theming
 
-Monogon comes with a VScode-like dark and light theme. This theme can be changed by changing the css properties on `monogon-code`.
-The simplest way to do so is
+Monogon comes with a VSCode-like dark and light theme. This theme can be changed by changing the css properties on `monogon-code`.
+
+The simplest way to do so is:
 
 ```css
 monogon-el.custom-theme-name {
