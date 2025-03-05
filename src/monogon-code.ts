@@ -64,7 +64,9 @@ class MonogonCode extends HTMLElement {
 
     this.codeEl!.textContent = module.format ? module.format(content) : content;
 
-    const definitions = transformModule(module.definitions, this.codeEl!);
+    // When having multiple blocks on the same page, generated highlights will conflict with each other
+    const littleHash = window.crypto.randomUUID().substring(0, 6);
+    const definitions = transformModule(module.definitions, this.codeEl!, littleHash);
     const moduleCss = definitions.map((m) => m.css).join(' ');
 
     /** Highlights */

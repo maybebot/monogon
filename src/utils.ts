@@ -29,27 +29,27 @@ export const getRanges = (search: RegExp, element: HTMLElement) => {
 /**
  * Creates function that applies highlights to element
  */
-const createHighlightFn = (highlight: Highlight, el: HTMLElement) => {
-  return CSS.highlights.set(highlight.name, new Highlight(...getRanges(highlight.regex, el)));
+const createHighlightFn = (highlight: Highlight, el: HTMLElement, scope: string) => {
+  return CSS.highlights.set(`${highlight.name}-${scope}`, new Highlight(...getRanges(highlight.regex, el)));
 };
 
 /**
  * Creates css ::highlight {} node
  */
-const createHighlightCss = (highlight: Highlight) => {
+const createHighlightCss = (highlight: Highlight, scope: string) => {
   const style = Object.entries(highlight.css)
     .map(([k, v]) => `${k}:${v};`)
     .join('\r\n');
-  return `::highlight(${highlight.name}) { ${style} }`;
+  return `::highlight(${highlight.name}-${scope}) { ${style} }`;
 };
 
 /**
  * Converts highlight definitions to usable module
  */
-export const transformModule = (highlights: Highlight[], codeNode: HTMLElement) => {
+export const transformModule = (highlights: Highlight[], codeNode: HTMLElement, scope: string) => {
   return highlights.map((highlight) => ({
-    apply: () => createHighlightFn(highlight, codeNode),
-    css: createHighlightCss(highlight),
+    apply: () => createHighlightFn(highlight, codeNode, scope),
+    css: createHighlightCss(highlight, scope),
   }));
 };
 
