@@ -1,12 +1,15 @@
 export type SupportedModule = 'plaintext' | 'json' | 'yaml' | 'css';
 
-export interface Highlight {
-  name: string;
+export type Definition = {
   regex: RegExp;
-  css: Partial<CSSStyleDeclaration>;
+  css: string;
+};
+
+export interface DefinitionMap {
+  [key: string]: Definition;
 }
 
 export interface Module {
-  definitions: Highlight[];
+  definitions: DefinitionMap;
   format?: (content: string) => string;
 }

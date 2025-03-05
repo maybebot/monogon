@@ -1,15 +1,16 @@
 import { monoLog } from '../utils.js';
+import { cssProps } from '../theme.js';
 
-const definitions = [
-  { name: 'any', regex: /.*/g, css: { color: 'var(--mng-text)' } },
-  { name: 'number', regex: /-?\d+(\.\d+)?([eE][+-]?\d+)?/g, css: { color: 'var(--mng-number)' } },
-  { name: 'boolean', regex: /\b(true|false)\b/g, css: { color: 'var(--mng-boolean)' } },
-  { name: 'null', regex: /\bnull\b/g, css: { color: 'var(--mng-null)' } },
-  { name: 'object-brackets', regex: /[{}]/g, css: { color: 'var(--mng-curly-brackets)' } },
-  { name: 'array-brackets', regex: /[[\]]/g, css: { color: 'var(--mng-square-brackets)' } },
-  { name: 'string', regex: /"(?:[^"\\]*(?:\\.[^"\\]*)*)"/g, css: { color: 'var(--mng-string)' } },
-  { name: 'key', regex: /"([^"\\]*(\\.[^"\\]*)*)"\s*:/g, css: { color: 'var(--mng-key)' } },
-];
+const definitions = {
+  any: { regex: /.*/g, css: cssProps.text },
+  number: { regex: /-?\d+(\.\d+)?([eE][+-]?\d+)?/g, css: cssProps.number },
+  boolean: { regex: /\b(true|false)\b/g, css: cssProps.boolean },
+  null: { regex: /\bnull\b/g, css: cssProps.null },
+  objectBrackets: { regex: /[{}]/g, css: cssProps.curlyBrackets },
+  arrayBrackets: { regex: /[[\]]/g, css: cssProps.squareBrackets },
+  string: { regex: /"(?:[^"\\]*(?:\\.[^"\\]*)*)"/g, css: cssProps.string },
+  key: { regex: /"([^"\\]*(\\.[^"\\]*)*)"\s*:/g, css: cssProps.key },
+};
 
 const format = (content: string) => {
   try {

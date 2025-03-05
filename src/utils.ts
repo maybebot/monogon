@@ -1,4 +1,4 @@
-import type { Highlight } from './types.ts';
+import type { DefinitionMap, Definition } from './types.ts';
 /**
  * Calculates ranges to highlight based on regex
  *
@@ -29,27 +29,24 @@ export const getRanges = (search: RegExp, element: HTMLElement) => {
 /**
  * Creates function that applies highlights to element
  */
-const createHighlightFn = (highlight: Highlight, el: HTMLElement, scope: string) => {
-  return CSS.highlights.set(`${highlight.name}-${scope}`, new Highlight(...getRanges(highlight.regex, el)));
+const createHighlightFn = (name: string, highlight: Definition, el: HTMLElement, scope: string) => {
+  return CSS.highlights.set(`${name}-${scope}`, new Highlight(...getRanges(highlight.regex, el)));
 };
 
 /**
  * Creates css ::highlight {} node
  */
-const createHighlightCss = (highlight: Highlight, scope: string) => {
-  const style = Object.entries(highlight.css)
-    .map(([k, v]) => `${k}:${v};`)
-    .join('\r\n');
-  return `::highlight(${highlight.name}-${scope}) { ${style} }`;
+const createHighlightCss = (name: string, highlight: Definition, scope: string) => {
+  return `::highlight(${name}-${scope}) { color: var(${highlight.css}); }`;
 };
 
 /**
  * Converts highlight definitions to usable module
  */
-export const transformModule = (highlights: Highlight[], codeNode: HTMLElement, scope: string) => {
-  return highlights.map((highlight) => ({
-    apply: () => createHighlightFn(highlight, codeNode, scope),
-    css: createHighlightCss(highlight, scope),
+export const transformModule = (highlights: DefinitionMap, codeNode: HTMLElement, scope: string) => {
+  return Object.entries(highlights).map(([name, definition]) => ({
+    apply: () => createHighlightFn(name, definition, codeNode, scope),
+    css: createHighlightCss(name, definition, scope),
   }));
 };
 

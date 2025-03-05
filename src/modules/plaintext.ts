@@ -1,3 +1,7 @@
-const definitions = [{ name: 'any', regex: /.*/g, css: { color: 'var(--mng-text)' } }];
+import { cssProps } from '../theme.js';
+
+const definitions = {
+  any: { regex: /.*/g, css: cssProps.text },
+};
 
 export default { definitions };
