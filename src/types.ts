@@ -1,4 +1,4 @@
-export type SupportedModule = 'plaintext' | 'json' | 'css';
+export type SupportedModule = 'plaintext' | 'json' | 'yaml' | 'css';
 
 export interface Highlight {
   name: string;
