@@ -22,6 +22,7 @@ Using the CSS Highlight, meaning [low browser support](https://caniuse.com/mdn-a
 | Language  | property  | syntax | formatting |
 | --------- | --------- | ------ | ---------- |
 | JSON      | json      | ✅     | ✅         |
+| YAML      | yaml      | ✅     | ❌         |
 | CSS       | css       | ❓     | ❌         |
 | plaintext | plaintext | -      | -          |
 
