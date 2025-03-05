@@ -1,16 +1,19 @@
 {
   "name": "monogon",
   "version": "0.1.4",
-  "description": "Modern syntax highlighting for the web",
+  "description": "Modern syntax highlighting for developer tooling",
   "author": "Ian Bobinac",
   "license": "MIT",
   "keywords": [
     "monogon",
     "syntax",
     "highlighting",
+    "editor",
     "code",
     "snippet",
-    "block"
+    "block",
+    "developer",
+    "tooling"
   ],
   "repository": {
     "type": "git",
