@@ -20,7 +20,4 @@ const format = (content: string) => {
   }
 };
 
-export default {
-  definitions,
-  format,
-};
+export default { definitions, format };

@@ -12,6 +12,4 @@ const definitions = [
   { name: 'symbol', regex: /;/g, css: { color: 'var(--mng-text)' } },
 ];
 
-export default {
-  definitions,
-};
+export default { definitions };
