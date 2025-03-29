@@ -18,8 +18,10 @@ class MonogonCode extends HTMLElement {
   applyHighlights = () => {};
 
   async connectedCallback() {
-    this.prepare();
-    this.refresh();
+    await this.prepare();
+    setTimeout(() => {
+      this.refresh();
+    }, 1); // TODO: handle with element creation order better
   }
 
   async attributeChangedCallback(oldValue: string | null, newValue: string | null) {
@@ -56,17 +58,20 @@ class MonogonCode extends HTMLElement {
   }
 
   async refresh() {
+    if (!this.codeEl) return;
+
     /** Module */
     const moduleName = this.getAttribute('lang') ?? 'plaintext';
     const module = await getModule(moduleName);
     const content = this.getAttribute('content') ?? '';
     this.value = content;
 
-    this.codeEl!.textContent = module.format ? module.format(content) : content;
+    this.codeEl.textContent = module.format ? module.format(content) : content;
 
     // When having multiple blocks on the same page, generated highlights will conflict with each other
+    if (!this.codeEl.childNodes?.[0]) return;
     const littleHash = window.crypto.randomUUID().substring(0, 6);
-    const definitions = transformModule(module.definitions, this.codeEl!, littleHash);
+    const definitions = transformModule(module.definitions, this.codeEl, littleHash);
     const moduleCss = definitions.map((m) => m.css).join(' ');
 
     /** Highlights */
