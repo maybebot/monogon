@@ -1,7 +1,6 @@
 {
   "include": ["src"],
   "compilerOptions": {
-    "jsx": "preserve",
     "target": "ES2020",
     "useDefineForClassFields": true,
     "module": "NodeNext",
@@ -9,6 +8,7 @@
     "outDir": "dist",
     "declaration": true,
     "sourceMap": true,
+    "inlineSources": true,
     "esModuleInterop": true,
     "moduleResolution": "nodenext",
     "isolatedModules": true,

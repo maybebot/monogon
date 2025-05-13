@@ -45,16 +45,20 @@
       "import": "./dist/monogon-code.js"
     },
     "./vue": {
+      "types": "./dist/frameworks/vue/MonogonCode.d.ts",
       "import": "./dist/frameworks/vue/MonogonCode.js"
     },
     "./react": {
-      "import": "./dist/frameworks/preact/MonogonCode.jsx"
+      "types": "./dist/frameworks/preact/MonogonCode.d.ts",
+      "import": "./dist/frameworks/preact/MonogonCode.js"
     },
     "./preact": {
-      "import": "./dist/frameworks/preact/MonogonCode.jsx"
+      "types": "./dist/frameworks/preact/MonogonCode.d.ts",
+      "import": "./dist/frameworks/preact/MonogonCode.js"
     },
     "./solid": {
-      "import": "./dist/frameworks/solid/MonogonCode.jsx"
+      "types": "./dist/frameworks/solid/MonogonCode.d.ts",
+      "import": "./dist/frameworks/solid/MonogonCode.js"
     }
   }
 }
