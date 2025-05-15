@@ -100,6 +100,10 @@ const handleInput = (e) => { console.log(e.target.value) }
 <MonogonCode content={content} lang="json" onInput={handleInput} />
 ```
 
+## Options
+
+For a read-only code block just add the `readonly` prop/attribute.
+
 ## Theming
 
 Monogon comes with a VSCode-like dark and light theme. This theme can be changed by changing the css properties on `monogon-code`.

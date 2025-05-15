@@ -6,11 +6,13 @@ export default defineComponent({
   props: {
     content: { type: String, required: true },
     lang: { type: String as () => 'plaintext' | 'json' | 'yaml' | 'css', default: 'plaintext', required: true },
+    readonly: { type: Boolean, default: false },
   },
   render() {
     return h('monogon-code', {
       content: this.content,
       lang: this.lang,
+      readonly: this.readonly,
     });
   },
 });

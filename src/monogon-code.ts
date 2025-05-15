@@ -4,7 +4,7 @@ import { getModule } from './modules.js';
 import { css } from './theme.js';
 
 class MonogonCode extends HTMLElement {
-  static observedAttributes = ['content', 'lang'];
+  static observedAttributes = ['content', 'lang', 'readonly'];
 
   constructor() {
     super();
@@ -41,7 +41,8 @@ class MonogonCode extends HTMLElement {
 
     const preEl = document.createElement('pre');
     const codeEl = document.createElement('code');
-    codeEl.setAttribute('contenteditable', 'plaintext-only');
+    const editable = this.hasAttribute('readonly') ? 'false' : 'plaintext-only';
+    codeEl.setAttribute('contenteditable', editable);
     codeEl.setAttribute('spellcheck', 'false');
     shadow.appendChild(preEl);
     preEl.appendChild(codeEl);
@@ -125,6 +126,7 @@ export interface TargetValueEvent extends Event {
 interface MonogonProps {
   content: string;
   lang: SupportedModule;
+  readonly?: boolean;
   onInput?: (e: TargetValueEvent) => void;
 }
 // @ts-expect-error JSX not existing
