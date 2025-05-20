@@ -23,7 +23,8 @@ export const css = `
 }
 pre {
   width: 100%;
-  height: 100%;
+  height: inherit;
+  overflow: auto;
   padding: 1em;
   margin: 0;
   background-color: var(${cssProps.background});
