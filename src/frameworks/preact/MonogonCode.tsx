@@ -8,7 +8,7 @@ const MonogonCode = ({
   content: string;
   lang: string;
   onInput?: () => void;
-  readonly: boolean;
+  readonly?: boolean;
 }) => {
   // @ts-expect-error JSX not existing
   return <monogon-code content={content} lang={lang} readonly={readonly}></monogon-code>;
