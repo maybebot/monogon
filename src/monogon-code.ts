@@ -19,8 +19,8 @@ class MonogonCode extends HTMLElement {
 
   async connectedCallback() {
     await this.prepare();
-    setTimeout(() => {
-      this.refresh();
+    setTimeout(async () => {
+      await this.refresh();
     }, 1); // TODO: handle with element creation order better
   }
 
