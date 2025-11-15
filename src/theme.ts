@@ -19,7 +19,7 @@ export const css = `
 }
 :host {
   display: inline-grid;
-  white-space: pre-line;
+  white-space: pre;
 }
 pre {
   width: 100%;
@@ -35,7 +35,8 @@ code {
   height: 100%;
   display: inline-block;
   outline: none;
-  white-space: pre-line;
+  white-space: pre;
+  word-wrap: normal;
 }
 
 :host {
