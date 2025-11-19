@@ -65,8 +65,8 @@
       "import": "./dist/frameworks/vue/MonogonCode.js"
     },
     "./react": {
-      "types": "./dist/frameworks/preact/MonogonCode.d.ts",
-      "import": "./dist/frameworks/preact/MonogonCode.js"
+      "types": "./dist/frameworks/react/MonogonCode.d.ts",
+      "import": "./dist/frameworks/react/MonogonCode.js"
     },
     "./preact": {
       "types": "./dist/frameworks/preact/MonogonCode.d.ts",

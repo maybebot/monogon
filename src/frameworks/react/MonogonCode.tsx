@@ -1,4 +1,4 @@
-/** @jsxImportSource preact */
+/** @jsxImportSource react */
 import '../../monogon-code.js';
 
 const MonogonCode = ({

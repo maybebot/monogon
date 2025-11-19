@@ -5,6 +5,7 @@ export default defineConfig({
   entry: [
     './src/monogon-code.ts',
     './src/frameworks/preact/MonogonCode.tsx',
+    './src/frameworks/react/MonogonCode.tsx',
     './src/frameworks/solid/MonogonCode.tsx',
     './src/frameworks/vue/MonogonCode.ts',
   ],
