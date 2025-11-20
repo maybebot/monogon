@@ -1,3 +1,4 @@
+/** @jsxImportSource solid-js */
 import '../../monogon-code.js';
 
 export default function ({
