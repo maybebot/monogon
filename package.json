@@ -20,6 +20,11 @@
     "url": "https://github.com/maybebot/monogon"
   },
   "type": "module",
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": ">=20.9.0",
+    "pnpm": ">=10"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsdown",
@@ -44,9 +49,9 @@
     "vue-tsc": "^3.1.1"
   },
   "peerDependencies": {
-    "vue": "^3.0.0 || ^2.0.0",
     "preact": "^10.0.0",
-    "react": "^17.0.0 || ^18.0.0 || ^19.0.0"
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "vue": "^3.0.0 || ^2.0.0"
   },
   "peerDependenciesMeta": {
     "vue": {
