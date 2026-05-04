@@ -65,9 +65,11 @@ const handleInput = (e) => { content.value = e.target.value }
 import MonogonCode from 'monogon/react';
 
 const content = '{ "json": ["this", "is", "json"], "how": 42  }';
-const handleInput = (e) => { console.log(e.target.value) }
+const handleInput = (e) => {
+  console.log(e.target.value);
+};
 
-<MonogonCode content={content} lang="json" onInput={handleInput} />
+<MonogonCode content={content} lang="json" onInput={handleInput} />;
 ```
 
 ### Preact
@@ -76,9 +78,11 @@ const handleInput = (e) => { console.log(e.target.value) }
 import MonogonCode from 'monogon/preact';
 
 const content = '{ "json": ["this", "is", "json"], "how": 42  }';
-const handleInput = (e) => { console.log(e.target.value) }
+const handleInput = (e) => {
+  console.log(e.target.value);
+};
 
-<MonogonCode content={content} lang="json" onInput={handleInput} />
+<MonogonCode content={content} lang="json" onInput={handleInput} />;
 ```
 
 ### Svelte
@@ -95,9 +99,11 @@ import 'monogon';
 
 ```jsx
 import MonogonCode from 'monogon/solid';
-const handleInput = (e) => { console.log(e.target.value) }
+const handleInput = (e) => {
+  console.log(e.target.value);
+};
 
-<MonogonCode content={content} lang="json" onInput={handleInput} />
+<MonogonCode content={content} lang="json" onInput={handleInput} />;
 ```
 
 ## Options
@@ -149,4 +155,5 @@ Full list of css properties used:
 SSR is not yet supported, you need to load it in the browser during page load.
 
 ---
+
 Made with 🍕 in Amsterdam.

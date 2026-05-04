@@ -2,43 +2,65 @@
   "name": "monogon",
   "version": "0.3.4",
   "description": "Modern syntax highlighting for developer tooling",
-  "author": "Ian Bobinac",
-  "license": "MIT",
   "keywords": [
-    "monogon",
-    "syntax",
-    "highlighting",
-    "editor",
-    "code",
-    "snippet",
     "block",
+    "code",
     "developer",
+    "editor",
+    "highlighting",
+    "monogon",
+    "snippet",
+    "syntax",
     "tooling"
   ],
+  "license": "MIT",
+  "author": "Ian Bobinac",
   "repository": {
     "type": "git",
     "url": "https://github.com/maybebot/monogon"
   },
+  "files": [
+    "dist"
+  ],
   "type": "module",
-  "packageManager": "pnpm@10.33.0",
-  "engines": {
-    "node": ">=20.9.0",
-    "pnpm": ">=10"
+  "main": "./dist/monogon-code.js",
+  "module": "./dist/monogon-code.js",
+  "exports": {
+    ".": {
+      "import": "./dist/monogon-code.js"
+    },
+    "./vue": {
+      "types": "./dist/frameworks/vue/MonogonCode.d.ts",
+      "import": "./dist/frameworks/vue/MonogonCode.js"
+    },
+    "./react": {
+      "types": "./dist/frameworks/react/MonogonCode.d.ts",
+      "import": "./dist/frameworks/react/MonogonCode.js"
+    },
+    "./preact": {
+      "types": "./dist/frameworks/preact/MonogonCode.d.ts",
+      "import": "./dist/frameworks/preact/MonogonCode.js"
+    },
+    "./solid": {
+      "types": "./dist/frameworks/solid/MonogonCode.d.ts",
+      "import": "./dist/frameworks/solid/MonogonCode.js"
+    }
   },
   "scripts": {
     "dev": "vite",
     "build": "tsdown",
     "preview": "vite preview",
     "lint": "oxlint --type-aware",
+    "format": "oxfmt",
     "release": "release-it"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "eslint": "^10.2.1",
     "globals": "^17.5.0",
+    "oxfmt": "^0.47.0",
     "oxlint": "^1.62.0",
     "oxlint-tsgolint": "^0.22.1",
-    "prettier": "3.8.3",
     "release-it": "^20.0.1",
     "tsdown": "^0.21.10",
     "typescript": "^6.0.3",
@@ -65,30 +87,9 @@
       "optional": true
     }
   },
-  "files": [
-    "dist"
-  ],
-  "main": "./dist/monogon-code.js",
-  "module": "./dist/monogon-code.js",
-  "exports": {
-    ".": {
-      "import": "./dist/monogon-code.js"
-    },
-    "./vue": {
-      "types": "./dist/frameworks/vue/MonogonCode.d.ts",
-      "import": "./dist/frameworks/vue/MonogonCode.js"
-    },
-    "./react": {
-      "types": "./dist/frameworks/react/MonogonCode.d.ts",
-      "import": "./dist/frameworks/react/MonogonCode.js"
-    },
-    "./preact": {
-      "types": "./dist/frameworks/preact/MonogonCode.d.ts",
-      "import": "./dist/frameworks/preact/MonogonCode.js"
-    },
-    "./solid": {
-      "types": "./dist/frameworks/solid/MonogonCode.d.ts",
-      "import": "./dist/frameworks/solid/MonogonCode.js"
-    }
-  }
+  "engines": {
+    "node": ">=20.9.0",
+    "pnpm": ">=10"
+  },
+  "packageManager": "pnpm@10.33.0"
 }

@@ -19,6 +19,6 @@
     "noUnusedLocals": true,
     "erasableSyntaxOnly": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
+    "noFallthroughCasesInSwitch": true
   }
 }

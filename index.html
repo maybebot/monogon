@@ -1,55 +1,54 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="src/monogon-code"></script>
+    <title>Monogon playground</title>
+    <style>
+      :root {
+        font-family: system-ui, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans';
+        background-color: #181818;
+        color: #f3f3f3;
+      }
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script type="module" src="src/monogon-code"></script>
-  <title>Monogon playground</title>
-  <style>
-    :root {
-      font-family: system-ui, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans';
-      background-color: #181818;
-      color: #f3f3f3
-    }
+      body {
+        max-width: 800px;
+        margin: 0 auto;
+      }
 
-    body {
-      max-width: 800px;
-      margin: 0 auto;
-    }
+      monogon-code.custom-theme {
+        --mng-background: #224;
+        --mng-text: #f00;
+        --mng-string: rebeccapurple;
+        --mng-boolean: hsl(240, 100%, 50%);
+        --mng-curly-brackets: rgba(255, 0, 100, 0.5);
+        --mng-key: hwb(110 35% 12% / 0.7);
+      }
+    </style>
+  </head>
 
-    monogon-code.custom-theme {
-      --mng-background: #224;
-      --mng-text: #f00;
-      --mng-string: rebeccapurple;
-      --mng-boolean: hsl(240, 100%, 50%);
-      --mng-curly-brackets: rgba(255, 0, 100, 0.5);
-      --mng-key: hwb(110 35% 12% / 0.7);
-    }
-  </style>
-</head>
-
-<body>
-  <h1>Monogon playground</h1>
-  <hr />
-  <section>
-    <h2>Plaintext</h2>
-    <monogon-code lang="plaintext" content="Nothing to see here"></monogon-code>
-  </section>
-  <section>
-    <h2>JSON</h2>
-    <monogon-code readonly lang="json" content='{"name":"Ian","age":4, "human": true}'></monogon-code>
-  </section>
-  <section>
-    <h2>Yaml</h2>
-    <pre>
-    <monogon-code lang="yaml" content=""></monogon-code>
-  </section>
-</pre>
+  <body>
+    <h1>Monogon playground</h1>
+    <hr />
+    <section>
+      <h2>Plaintext</h2>
+      <monogon-code lang="plaintext" content="Nothing to see here"></monogon-code>
+    </section>
+    <section>
+      <h2>JSON</h2>
+      <monogon-code readonly lang="json" content='{"name":"Ian","age":4, "human": true}'></monogon-code>
+    </section>
+    <section>
+      <h2>Yaml</h2>
+      <monogon-code lang="yaml" content=""></monogon-code>
+    </section>
     <section>
       <h2>CSS</h2>
-      <monogon-code lang="css" content="--pyro-button-spacing: var(--pyro-spacing); /* size of the button */
+      <monogon-code
+        lang="css"
+        content="--pyro-button-spacing: var(--pyro-spacing); /* size of the button */
 --pyro-button-border: var(--pyro-border); /* border */
 --pyro-button-border-radius: var(--pyro-border-radius); /* border-radius */
 /* Colors */
@@ -59,17 +58,17 @@
 --pyro-color-on-primary: var(--pyro-color-on-primary); /* primary text color */
 /* State */
 --pyro-button-hover-color: var(--pyro-hover-color); /* background when hovered */
---pyro-button-active-color: none; /* background when active */">
+--pyro-button-active-color: none; /* background when active */"
+      >
       </monogon-code>
     </section>
     <section>
       <h2>Random-themed</h2>
       <monogon-code class="custom-theme" lang="json" content='{"name":"Ian","age":4, "human": true}'></monogon-code>
     </section>
-    <section>
 
-      <script>
-        const yaml = `
+    <script>
+      const yaml = `
 # Employee records
 - martin:
     name: Martin D'vloper
@@ -98,9 +97,8 @@ fold_newlines: >
             this is really a
             single line of text
             despite appearances
-`
-        document.querySelector('monogon-code[lang="yaml"]').setAttribute('content', yaml)
-      </script>
-</body>
-
+`;
+      document.querySelector('monogon-code[lang="yaml"]').setAttribute('content', yaml);
+    </script>
+  </body>
 </html>
