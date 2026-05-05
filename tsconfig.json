@@ -5,6 +5,7 @@
     "useDefineForClassFields": true,
     "module": "NodeNext",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "rootDir": "./",
     "outDir": "dist",
     "declaration": true,
     "sourceMap": true,
