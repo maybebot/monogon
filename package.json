@@ -49,7 +49,6 @@
   "scripts": {
     "dev": "vite",
     "build": "tsdown",
-    "preview": "vite preview",
     "test": "vitest",
     "lint": "oxlint --type-aware",
     "format": "oxfmt",
@@ -76,7 +75,7 @@
   "peerDependencies": {
     "preact": "^10.0.0",
     "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
-    "solid": "^1.0.0",
+    "solid-js": "^1.0.0",
     "vue": "^3.0.0 || ^2.0.0"
   },
   "peerDependenciesMeta": {
@@ -87,6 +86,9 @@
       "optional": true
     },
     "react": {
+      "optional": true
+    },
+    "solid-js": {
       "optional": true
     }
   },
