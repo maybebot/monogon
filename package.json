@@ -50,6 +50,7 @@
     "dev": "vite",
     "build": "tsdown",
     "preview": "vite preview",
+    "test": "vitest",
     "lint": "oxlint --type-aware",
     "format": "oxfmt",
     "release": "release-it"
@@ -58,6 +59,7 @@
     "@eslint/js": "^10.0.1",
     "eslint": "^10.2.1",
     "globals": "^17.5.0",
+    "happy-dom": "^20.9.0",
     "oxfmt": "^0.47.0",
     "oxlint": "^1.62.0",
     "oxlint-tsgolint": "^0.22.1",
@@ -68,6 +70,7 @@
     "unplugin-vue": "^7.2.0",
     "vite": "^8.0.10",
     "vite-plugin-dts": "^4.5.4",
+    "vitest": "^4.1.5",
     "vue-tsc": "^3.2.7"
   },
   "peerDependencies": {
