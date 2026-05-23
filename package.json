@@ -1,6 +1,6 @@
 {
   "name": "monogon",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "Modern syntax highlighting for developer tooling",
   "keywords": [
     "block",
