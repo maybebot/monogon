@@ -51,8 +51,7 @@
     "build": "tsdown",
     "test": "vitest",
     "lint": "oxlint --type-aware",
-    "format": "oxfmt",
-    "release": "release-it"
+    "format": "oxfmt"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -62,7 +61,6 @@
     "oxfmt": "^0.47.0",
     "oxlint": "^1.62.0",
     "oxlint-tsgolint": "^0.22.1",
-    "release-it": "^20.0.1",
     "tsdown": "^0.21.10",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.1",
