@@ -8,7 +8,7 @@
     <title>Monogon playground</title>
     <style>
       :root {
-        font-family: system-ui, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans";
+        font-family: system-ui, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans';
         background-color: #181818;
         color: #f3f3f3;
       }
@@ -38,11 +38,7 @@
     </section>
     <section>
       <h2>JSON</h2>
-      <monogon-code
-        readonly
-        lang="json"
-        content='{"name":"Ian","age":4, "human": true}'
-      ></monogon-code>
+      <monogon-code readonly lang="json" content='{"name":"Ian","age":4, "human": true}'></monogon-code>
     </section>
     <section>
       <h2>Yaml</h2>
@@ -117,11 +113,7 @@
     </section>
     <section>
       <h2>Random-themed</h2>
-      <monogon-code
-        class="custom-theme"
-        lang="json"
-        content='{"name":"Ian","age":4, "human": true}'
-      ></monogon-code>
+      <monogon-code class="custom-theme" lang="json" content='{"name":"Ian","age":4, "human": true}'></monogon-code>
     </section>
 
     <script>
@@ -155,7 +147,7 @@ fold_newlines: >
             single line of text
             despite appearances
 `;
-      document.querySelector('monogon-code[lang="yaml"]').setAttribute("content", yaml);
+      document.querySelector('monogon-code[lang="yaml"]').setAttribute('content', yaml);
     </script>
   </body>
 </html>

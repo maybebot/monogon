@@ -1,4 +1,4 @@
-import { cssProps } from "../theme.js";
+import { cssProps } from '../theme.js';
 
 /**
  * CSS tokenization focused on declarations and common function/at-rule syntax.

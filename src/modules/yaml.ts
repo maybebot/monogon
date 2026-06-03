@@ -1,4 +1,4 @@
-import { cssProps } from "../theme.js";
+import { cssProps } from '../theme.js';
 
 const definitions = {
   any: { regex: /.*/g, css: cssProps.text },
