@@ -1,5 +1,5 @@
-import { monoLog } from "../utils.js";
-import { cssProps } from "../theme.js";
+import { monoLog } from '../utils.js';
+import { cssProps } from '../theme.js';
 
 const definitions = {
   any: { regex: /.*/g, css: cssProps.text },
@@ -19,7 +19,7 @@ const format = (content: string) => {
   try {
     return JSON.stringify(JSON.parse(content), null, 2);
   } catch {
-    monoLog("Invalid JSON, unable to format, skipping");
+    monoLog('Invalid JSON, unable to format, skipping');
     return content;
   }
 };
