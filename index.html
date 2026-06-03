@@ -8,7 +8,7 @@
     <title>Monogon playground</title>
     <style>
       :root {
-        font-family: system-ui, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans';
+        font-family: system-ui, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans";
         background-color: #181818;
         color: #f3f3f3;
       }
@@ -38,7 +38,11 @@
     </section>
     <section>
       <h2>JSON</h2>
-      <monogon-code readonly lang="json" content='{"name":"Ian","age":4, "human": true}'></monogon-code>
+      <monogon-code
+        readonly
+        lang="json"
+        content='{"name":"Ian","age":4, "human": true}'
+      ></monogon-code>
     </section>
     <section>
       <h2>Yaml</h2>
@@ -48,23 +52,76 @@
       <h2>CSS</h2>
       <monogon-code
         lang="css"
-        content="--pyro-button-spacing: var(--pyro-spacing); /* size of the button */
---pyro-button-border: var(--pyro-border); /* border */
---pyro-button-border-radius: var(--pyro-border-radius); /* border-radius */
-/* Colors */
---pyro-button-surface-color: var(--pyro-surface-color); /* no variant */
---pyro-button-primary-color: var(--pyro-primary-color); /* text on no variant */
---pyro-button-primary-color: var(--pyro-color-on-primary); /* primary background */
---pyro-color-on-primary: var(--pyro-color-on-primary); /* primary text color */
-/* State */
---pyro-button-hover-color: var(--pyro-hover-color); /* background when hovered */
---pyro-button-active-color: none; /* background when active */"
+        content="/* Cards layout with variables, functions, pseudo-elements and at-rules */
+:root {
+  --radius: 14px;
+  --card-bg: hsl(224 24% 13%);
+  --card-border: hsl(224 18% 28% / 0.8);
+  --accent: rgb(88 166 255);
+}
+
+.grid {
+  display: grid;
+  gap: clamp(0.75rem, 1.2vw, 1.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  padding: calc(0.8rem + 0.7vw);
+}
+
+.card {
+  position: relative;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  background: linear-gradient(145deg, hsl(224 26% 16%), var(--card-bg));
+  color: hsl(210 20% 96%);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.35);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.card:hover,
+.card:focus-within {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgb(0 0 0 / 0.42);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at top right, rgb(88 166 255 / 0.24), transparent 55%);
+  pointer-events: none;
+}
+
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.12);
+  }
+}
+
+.card.is-active {
+  outline: 2px solid var(--accent);
+  animation: pulse 1.8s ease-in-out infinite;
+}"
       >
       </monogon-code>
     </section>
     <section>
       <h2>Random-themed</h2>
-      <monogon-code class="custom-theme" lang="json" content='{"name":"Ian","age":4, "human": true}'></monogon-code>
+      <monogon-code
+        class="custom-theme"
+        lang="json"
+        content='{"name":"Ian","age":4, "human": true}'
+      ></monogon-code>
     </section>
 
     <script>
@@ -98,7 +155,7 @@ fold_newlines: >
             single line of text
             despite appearances
 `;
-      document.querySelector('monogon-code[lang="yaml"]').setAttribute('content', yaml);
+      document.querySelector('monogon-code[lang="yaml"]').setAttribute("content", yaml);
     </script>
   </body>
 </html>
