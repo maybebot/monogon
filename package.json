@@ -17,7 +17,7 @@
   "author": "Ian Bobinac",
   "repository": {
     "type": "git",
-    "url": "https://github.com/maybebot/monogon"
+    "url": "git+https://github.com/maybebot/monogon.git"
   },
   "files": [
     "dist"
