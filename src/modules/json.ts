@@ -10,7 +10,7 @@ const definitions = {
   boolean: { regex: /\b(true|false)\b/g, css: cssProps.boolean },
   null: { regex: /\bnull\b/g, css: cssProps.null },
   objectBrackets: { regex: /[{}]/g, css: cssProps.curlyBrackets },
-  arrayBrackets: { regex: /[\[\]]/g, css: cssProps.squareBrackets },
+  arrayBrackets: { regex: /[[\]]/g, css: cssProps.squareBrackets },
   string: { regex: /"(?:[^"\\]*(?:\\.[^"\\]*)*)"/g, css: cssProps.string },
   key: { regex: /"([^"\\]*(\\.[^"\\]*)*)"\s*:/g, css: cssProps.key },
 };
