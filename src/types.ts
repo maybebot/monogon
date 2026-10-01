@@ -1,4 +1,4 @@
-export type SupportedModule = 'plaintext' | 'json' | 'yaml' | 'css';
+export type SupportedModule = 'plaintext' | 'json' | 'yaml' | 'css' | 'toml';
 
 export type Definition = {
   regex: RegExp;
