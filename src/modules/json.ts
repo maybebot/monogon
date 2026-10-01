@@ -12,6 +12,7 @@ const definitions = {
   objectBrackets: { regex: /[{}]/g, css: cssProps.curlyBrackets },
   arrayBrackets: { regex: /[[\]]/g, css: cssProps.squareBrackets },
   string: { regex: /"(?:[^"\\]*(?:\\.[^"\\]*)*)"/g, css: cssProps.string },
+  escape: { regex: /\\(?:["\\/bfnrt]|u[\da-fA-F]{4})/g, css: cssProps.keyword },
   key: { regex: /"([^"\\]*(\\.[^"\\]*)*)"\s*:/g, css: cssProps.key },
 };
 

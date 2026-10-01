@@ -3,7 +3,7 @@ import { cssProps } from '../theme.js';
 const definitions = {
   any: { regex: /.*/g, css: cssProps.text },
   boolean: { regex: /\b(?:true|false|yes|no|on|off)\b/gi, css: cssProps.boolean },
-  null: { regex: /\bnull\b|~/g, css: cssProps.null },
+  null: { regex: /\bnull\b|~/gi, css: cssProps.null },
   number: {
     regex: /(?<![\w.])-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?(?![\w.])/g,
     css: cssProps.number,
@@ -13,6 +13,8 @@ const definitions = {
     regex: /(?<=^|\n)\s*(?:-\s*)?(?:"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|[\w.-]+)(?=\s*:)/gm,
     css: cssProps.key,
   },
+  anchor: { regex: /(?<!\S)[&*!][\w-]+/g, css: cssProps.keyword },
+  document: { regex: /^(?:---|\.\.\.)(?=\s|$)/gm, css: cssProps.keyword },
   value: { regex: /(?<=:\s*)([^#\n]+)/g, css: cssProps.string },
   comment: { regex: /#.*/g, css: cssProps.comment },
   keyword: { regex: /:|\||>|\{|\}|\[|\]/g, css: cssProps.keyword },

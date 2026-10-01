@@ -32,11 +32,18 @@ describe('getRanges()', () => {
     expect(ranges[0].toString()).toBe('world');
   });
 
-  it('matches are case-insensitive due to toLowerCase()', () => {
+  it('respects the regex case-sensitivity', () => {
     element.textContent = 'Hello World';
-    // regex is already lowercase to match lowercased content
-    const ranges = getRanges(/hello/g, element);
+    expect(getRanges(/hello/g, element)).toHaveLength(0);
+    const ranges = getRanges(/hello/gi, element);
     expect(ranges).toHaveLength(1);
+  });
+
+  it('preserves source offsets for Unicode text', () => {
+    element.textContent = 'İ true';
+    const ranges = getRanges(/true/g, element);
+    expect(ranges).toHaveLength(1);
+    expect(ranges[0].toString()).toBe('true');
   });
 });
 

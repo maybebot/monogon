@@ -9,7 +9,7 @@ import type { DefinitionMap, Definition } from './types.ts';
  */
 export const getRanges = (search: RegExp, element: HTMLElement) => {
   const textNode = element.childNodes[0];
-  const content = textNode.textContent?.toLowerCase();
+  const content = textNode.textContent;
   if (!content) return [];
 
   const indexes: { s: number; e: number }[] = [];
