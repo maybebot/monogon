@@ -14,6 +14,7 @@ describe('json module', () => {
           'objectBrackets',
           'arrayBrackets',
           'string',
+          'escape',
           'key',
         ]),
       );
@@ -70,6 +71,10 @@ describe('json module', () => {
 
     it('string regex matches strings with escaped quotes', () => {
       expect('"say \\"hi\\""'.match(jsonModule.definitions.string.regex)).not.toBeNull();
+    });
+
+    it('escape regex matches JSON escape sequences', () => {
+      expect('"line\\n\\u0041"'.match(jsonModule.definitions.escape.regex)).toEqual(['\\n', '\\u0041']);
     });
 
     it('key regex matches JSON object keys', () => {

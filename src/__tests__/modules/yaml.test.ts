@@ -9,7 +9,9 @@ describe('yaml module', () => {
   describe('definitions', () => {
     it('has expected token types', () => {
       const keys = Object.keys(yamlModule.definitions);
-      expect(keys).toEqual(expect.arrayContaining(['any', 'boolean', 'key', 'value', 'comment', 'keyword']));
+      expect(keys).toEqual(
+        expect.arrayContaining(['any', 'boolean', 'key', 'value', 'comment', 'keyword', 'anchor', 'document']),
+      );
     });
 
     it('each definition has a regex and css property', () => {
@@ -37,6 +39,10 @@ describe('yaml module', () => {
       expect(matches).toEqual(expect.arrayContaining(['null', '~']));
     });
 
+    it('null regex matches mixed-case null values', () => {
+      expect('Null'.match(yamlModule.definitions.null.regex)).toEqual(['Null']);
+    });
+
     it('number regex matches integers, decimals and scientific notation', () => {
       const regex = new RegExp(yamlModule.definitions.number.regex.source, 'g');
       const matches = 'a: 42\nb: 3.14\nc: -1e3'.match(regex);
@@ -59,6 +65,11 @@ describe('yaml module', () => {
       const regex = new RegExp(yamlModule.definitions.value.regex.source, 'gm');
       const matches = 'key: somevalue # comment'.match(regex);
       expect(matches?.[0]?.trim()).toBe('somevalue');
+    });
+
+    it('matches anchors and document markers', () => {
+      expect('&defaults'.match(yamlModule.definitions.anchor.regex)).toEqual(['&defaults']);
+      expect('---\n'.match(yamlModule.definitions.document.regex)).toEqual(['---']);
     });
   });
 });

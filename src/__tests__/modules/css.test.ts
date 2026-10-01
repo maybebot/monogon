@@ -15,7 +15,17 @@ describe('css module', () => {
     it('has expected token types', () => {
       const keys = Object.keys(cssModule.definitions);
       expect(keys).toEqual(
-        expect.arrayContaining(['any', 'property', 'value', 'dashes', 'parenthesis', 'keyword', 'comment', 'symbol']),
+        expect.arrayContaining([
+          'any',
+          'property',
+          'value',
+          'dashes',
+          'parenthesis',
+          'keyword',
+          'comment',
+          'symbol',
+          'selector',
+        ]),
       );
     });
 
@@ -75,6 +85,18 @@ describe('css module', () => {
       const regex = withGlobalFlag(cssModule.definitions.atRule.regex);
       const matches = '@media (min-width: 800px)'.match(regex);
       expect(matches).toEqual(['@media']);
+    });
+
+    it('matches uppercase property names and modern CSS functions', () => {
+      const properties = withGlobalFlag(cssModule.definitions.property.regex);
+      const keywords = withGlobalFlag(cssModule.definitions.keyword.regex);
+      expect('COLOR: red;'.match(properties)).toContain('COLOR');
+      expect('color-mix(in srgb, red, blue)'.match(keywords)).toContain('color-mix');
+    });
+
+    it('matches selectors', () => {
+      const regex = withGlobalFlag(cssModule.definitions.selector.regex);
+      expect('main > .content, #app {'.match(regex)?.[0]?.trim()).toBe('main > .content, #app');
     });
   });
 });
