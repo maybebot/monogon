@@ -1,13 +1,14 @@
 import type { Module, SupportedModule } from './types.ts';
 import { monoLog } from './utils.js';
 
-const supportedModules: SupportedModule[] = ['plaintext', 'json', 'yaml', 'css'];
+const supportedModules: SupportedModule[] = ['plaintext', 'json', 'yaml', 'css', 'toml'];
 
 const moduleMap: Record<SupportedModule, () => Promise<{ default: Module }>> = {
   plaintext: () => import('./modules/plaintext.js'),
   json: () => import('./modules/json.js'),
   yaml: () => import('./modules/yaml.js'),
   css: () => import('./modules/css.js'),
+  toml: () => import('./modules/toml.js'),
 };
 
 export const getModule = async (name: string): Promise<Module> => {

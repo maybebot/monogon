@@ -24,6 +24,12 @@ describe('getModule()', () => {
     expect(Object.keys(mod.definitions)).toContain('property');
   });
 
+  it('returns the toml module for "toml"', async () => {
+    const mod = await getModule('toml');
+    expect(mod.definitions).toBeDefined();
+    expect(Object.keys(mod.definitions)).toContain('section');
+  });
+
   it('returns the plaintext module for "plaintext"', async () => {
     const mod = await getModule('plaintext');
     expect(Object.keys(mod.definitions)).toEqual(['any']);
